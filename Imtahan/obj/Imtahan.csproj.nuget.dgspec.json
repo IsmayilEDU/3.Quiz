@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\Imtahan\\Imtahan.csproj": {}
+    "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\3.Quiz\\Imtahan\\Imtahan.csproj": {}
   },
   "projects": {
-    "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\Imtahan\\Imtahan.csproj": {
+    "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\3.Quiz\\Imtahan\\Imtahan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\Imtahan\\Imtahan.csproj",
+        "projectUniqueName": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\3.Quiz\\Imtahan\\Imtahan.csproj",
         "projectName": "Imtahan",
-        "projectPath": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\Imtahan\\Imtahan.csproj",
+        "projectPath": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\3.Quiz\\Imtahan\\Imtahan.csproj",
         "packagesPath": "C:\\Users\\MSI NOTEBOOK\\.nuget\\packages\\",
-        "outputPath": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\Imtahan\\obj\\",
+        "outputPath": "C:\\Ismayil\\PROJECTS\\StepIT\\4.C#\\3.String\\3.Quiz\\Imtahan\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\MSI NOTEBOOK\\AppData\\Roaming\\NuGet\\NuGet.Config",

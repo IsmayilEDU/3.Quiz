@@ -4,7 +4,7 @@ namespace Imtahan
 {
     internal class Program
     {
-        static void shuffleArray(in Random rand, string[] array)
+        public static void shuffleArray(in Random rand,params string[] array)
         {
             int n = array.Length;
             while (n > 1)
@@ -18,9 +18,11 @@ namespace Imtahan
 
         static void Main(string[] args)
         {
-            
+            //  Score for player 
+            byte score = 0;
 
-            string[] questions = new string[]
+            //  Questions
+            string[] questions = new string[10]
             {
                 "Azerbaycanin paytaxti haradir?",
                 "Qan qohumu olan insanlarin birliyi?",
@@ -34,7 +36,8 @@ namespace Imtahan
                 "Ateshperestler uchun bu muqeddesdir?"
             };
 
-            string[] correctAnswers = new string[]
+            //  Correct answers
+            string[] correctAnswers = new string[10]
             {
                 "Atropatena ile",
                 "Qebile",
@@ -48,92 +51,102 @@ namespace Imtahan
                 "Su"
             };
 
-            string[,] answers = new string[10,3] {
-                { "Kur chayi ile","Iberiya ile","Xezer denizi ile" },
-                {"Dovlet","Ibtidai insan surusu","Tayfa" },
-                {"Avesta","Tovrat","Incil" },
-                {"Atropat","Cavanshir","Iranzu" },
-                {"Qebele","Gence","Berde" },
-                {"Ateshperstlik","Xristianliq","Budperestlik" },
-                {"Naghara","Balaban","Kamancha" },
-                {"Fars","Manna","Alban" },
-                {"Berde","Izurtu","Qazaka" },
-                {"Yemek","Dagh","Duman" },
+            //  All Answers
+            string[][] allAnswers = new string[10][] {
+                new string[4]{ "Kur chayi ile","Iberiya ile","Xezer denizi ile","Atropatena ile" },
+                new string[4]{"Dovlet","Ibtidai insan surusu","Tayfa","Qebile" },
+                new string[4]{"Avesta","Tovrat","Incil","Qurani-Kerim" },
+                new string[4]{"Atropat","Cavanshir","Iranzu","Tomiris" },
+                new string[4]{"Qebele","Gence","Berde","Ismayilli" },
+                new string[4]{"Ateshperstlik","Xristianliq","Budperestlik","Buddizm" },
+                new string[4]{"Naghara","Balaban","Kamancha","Qavaldash" },
+                new string[4]{"Fars","Manna","Alban","Massaget" },
+                new string[4]{"Berde","Izurtu","Qazaka","Qebele" },
+                new string[4]{"Yemek","Dagh","Duman","Su" },
             };
 
-            // Append correct
-            Random rand = new Random();
-            for (int j = 0; j < 10; j++)
-            {
+            //  Variants (for add to answers)
+            string[] variants = new string[4] { "a)", "b)", "c)", "d)" };
 
-                for (int i = 0; i < answers[j].Length; i++)
+            //  Shuffle and append variants to all answers
+            Random rand = new Random();
+            for (int i = 0; i < allAnswers.Length; i++)
+            {
+                //  Shuffle answers
+                shuffleArray(rand, allAnswers[i]);
+                for (int j = 0; j < allAnswers[i].Length; j++)
                 {
-                    Console.Write($"{answers[j][i]} ");
+                    //  Add variant to answer
+                    string answerWithVariant = variants[j] + allAnswers[i][j];
+                    allAnswers[i][j] = answerWithVariant;
                 }
-                shuffleArray(rand, answers);
-                for (int i = 0; i < answers.Length; i++)
+            }
+
+            //  Play quiz
+            for (int i = 0; i < allAnswers.Length; i++)
+            {
+                Console.Clear(); 
+                Console.ForegroundColor= ConsoleColor.White;
+                
+                //  Show question and answers
+                Console.WriteLine(questions[i]);
+                for (int j = 0; j < allAnswers[i].Length; j++)
                 {
-                    Console.Write($"{answers[i]} ");
+                    Console.WriteLine(allAnswers[i][j]);
                 }
                 Console.WriteLine();
+                Console.WriteLine($"Score: {score}");
+
+                //  Select variant
+                Console.WriteLine();
+                Console.Write("Please choose variant: ");
+                ConsoleKeyInfo chooseVariant= Console.ReadKey();
+                char selectedVariant = chooseVariant.KeyChar;
+
+                //  Find selected answer in answers
+                string selectedAnswer = null;
+                for (int j = 0; j < variants.Length; j++)
+                {
+                    if (selectedVariant == allAnswers[i][j][0])
+                    {
+                        selectedAnswer = allAnswers[i][j].Substring(2);
+                        break;
+                    }
+                }
+
+                //  Show correct or wrong answer
+                Console.Clear();
+                Console.SetCursorPosition(50,16);
+                //  If player choose correct answer
+                if (selectedAnswer == correctAnswers[i])
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.WriteLine("Congralutions, you choose correct answer");
+                    score += 10;
+                }
+
+                //  If player choose wrong answer
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Unfortunately, you choose wrong answer");
+                    if (score>=10) score -= 10;
+                }
+                Thread.Sleep(2000);
             }
-            
 
 
 
 
 
 
-            //int select = 0;
-            //dynamic button;
-            //while (true)
-            //{
-            //    Console.Clear();
 
-            //    //  Show menu
-            //    int x = 50;
-            //    int y = 15;
-            //    Console.SetCursorPosition(x, y);
-            //    Console.Write("Please choose operation from menu:");
-            //    x += 5;
-            //    for (int i = 0; i < operations.Count(); i++)
-            //    {
-            //        y++;
-            //        Console.SetCursorPosition(x, y);
-            //        if (select == i) { Console.BackgroundColor = ConsoleColor.DarkGreen; }
-            //        Console.WriteLine(operations[i]);
-            //        Console.BackgroundColor = ConsoleColor.Black;
-            //    }
 
-            //    Console.SetCursorPosition(0, 0);
 
-            //    button = Console.ReadKey(true);
-            //    //  To navigate through in menu
-            //    switch (button.Key)
-            //    {
-            //        //  Move down
-            //        case ConsoleKey.DownArrow:
-            //            if (select <= 2 && select >= 0)
-            //            {
-            //                select++;
-            //            }
-            //            break;
 
-            //        //  Move up
-            //        case ConsoleKey.UpArrow:
-            //            if (select <= 3 && select >= 1)
-            //            {
-            //                select--;
-            //            }
-            //            break;
 
-            //        //  Select from menu
-            //        case ConsoleKey.Enter:
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //}
+
+
         }
     }
 }
